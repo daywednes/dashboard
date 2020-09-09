@@ -1,0 +1,18 @@
+{
+  "name": "default",
+  "type": "postgres",
+  "host": "ec2-54-166-107-5.compute-1.amazonaws.com",
+  "port": 5432,
+  "username": "bazncgvdnsdkwr",
+  "password": "135662986290f97221f31058d2c81f0049506dbf740fc92c12b09d96d53a25fa",
+  "database": "d6vcbuq99kj7pa",
+  "synchronize": true,
+  "logging": true,
+  "entities": ["src/entity/*.*"],
+  "ssl": true,
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  }
+}
