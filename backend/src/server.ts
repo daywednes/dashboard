@@ -1,17 +1,17 @@
+import cors from "@koa/cors";
 import Koa from "koa";
-import jwt from "koa-jwt";
 import bodyParser from "koa-bodyparser";
 import helmet from "koa-helmet";
-import cors from "@koa/cors";
-import winston from "winston";
-import { createConnection } from "typeorm";
+import jwt from "koa-jwt";
 import "reflect-metadata";
-
-import { logger } from "./logger";
+import { createConnection } from "typeorm";
+import winston from "winston";
 import { config } from "./config";
-import { unprotectedRouter } from "./unprotectedRoutes";
-import { protectedRouter } from "./protectedRoutes";
 import { cron } from "./cron";
+import { logger } from "./logger";
+import { protectedRouter } from "./protectedRoutes";
+import { unprotectedRouter } from "./unprotectedRoutes";
+
 
 // create connection with database
 // note that its not active database connection
@@ -23,7 +23,9 @@ createConnection({
     logging: false,
     entities: config.dbEntitiesPath,
     extra: {
-        ssl: config.dbsslconn, // if not development, will use SSL
+        ssl: {
+            rejectUnauthorized: false
+        }
     }
 }).then(async () => {
 
